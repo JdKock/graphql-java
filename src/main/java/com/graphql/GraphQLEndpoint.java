@@ -4,7 +4,6 @@ import com.coxautodev.graphql.tools.SchemaParser;
 import com.graphql.service.LocatorService;
 import graphql.schema.GraphQLSchema;
 import graphql.servlet.SimpleGraphQLServlet;
-import io.leangen.graphql.GraphQLSchemaGenerator;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -23,14 +22,5 @@ public class GraphQLEndpoint extends SimpleGraphQLServlet {
                 .build()
                 .makeExecutableSchema();
     }
-
-//    private static GraphQLSchema buildSchema() {
-//        LocatorService locatorService = new LocatorService();
-//        Query query = new Query(locatorService);
-//
-//        return new GraphQLSchemaGenerator()
-//                .withOperationsFromSingleton(query)
-//                .generate();
-//    }
 
 }
