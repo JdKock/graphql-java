@@ -1,6 +1,5 @@
 package com.graphql;
 
-import com.coxautodev.graphql.tools.SchemaParser;
 import com.graphql.service.LocatorService;
 import graphql.schema.GraphQLSchema;
 import graphql.servlet.SimpleGraphQLServlet;
@@ -17,20 +16,11 @@ public class GraphQLEndpoint extends SimpleGraphQLServlet {
 
     private static GraphQLSchema buildSchema() {
         LocatorService locatorService = new LocatorService();
-        return SchemaParser.newParser()
-                .file("schema.graphqls")
-                .resolvers(new Query(locatorService))
-                .build()
-                .makeExecutableSchema();
-    }
+        Query query = new Query(locatorService);
 
-//    private static GraphQLSchema buildSchema() {
-//        LocatorService locatorService = new LocatorService();
-//        Query query = new Query(locatorService);
-//
-//        return new GraphQLSchemaGenerator()
-//                .withOperationsFromSingleton(query)
-//                .generate();
-//    }
+        return new GraphQLSchemaGenerator()
+                .withOperationsFromSingleton(query)
+                .generate();
+    }
 
 }
