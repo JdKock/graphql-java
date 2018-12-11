@@ -1,0 +1,50 @@
+type GeoLocation {
+    lng: String
+    lat: String
+}
+
+type Address {
+    postalcode: String
+    street: String
+    geoLocation: GeoLocation
+    housenumber: String
+    suffix: String
+    city: String
+}
+
+type FromTo {
+    hourFrom: String
+    hourTo: String
+}
+
+type OpeningHours {
+    dayOfWeek: String
+    hours: [FromTo]
+}
+
+type Office {
+    faxNumber: String
+    openingHours: [OpeningHours]
+    address: Address
+    telephoneNumber: String
+    name: String
+    pir: String
+    type: String
+    info: String
+    lockers: Boolean
+    openingInfo: [String]
+}
+
+type Atm {
+    type: String
+    address: Address
+}
+
+type Query {
+    allOffices: [Office]
+    allAtms: [Atm]
+}
+
+schema {
+    query: Query
+}
